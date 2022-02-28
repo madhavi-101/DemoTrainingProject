@@ -1,0 +1,134 @@
+import React from 'react';
+import { Text, View } from 'react-native';
+
+console.log("---------------")
+console.log("!!!!!Global declare!!!!!")
+
+var a = 10;
+console.log("*var*", a)
+
+let apples = 5;
+console.log("let apples ", apples)
+
+let applecolor = ["red", "green"];
+console.log("let applecolor ", applecolor)
+
+const banana = 50;
+console.log("--const banana-- ", banana)
+
+const cars = ["Saab", "Volvo", "BMW"];
+console.log("--const cars array -- ", cars)
+
+let x = {
+    // x: 2
+}
+console.log("xxxxxxxxxxxxx", x)
+
+//x object 
+x = {
+    x: 7,
+    d: 1,
+    b: 2,
+}
+
+console.log("xxxxxxxxxxxxx", x)
+
+// const { d, b } = x   //destructor
+// const { flexDirection, justifyContent, d } = style  //destructor
+
+
+// let { hairColor, x } = myObject
+// console.log("Destrusting", myObject)
+
+const array1 = [applecolor, cars]
+console.log("Spread both r array", array1)
+
+const array2 = [1, 2, ...array1, 3, x]
+console.log("spread array & obj existing val ", array2)
+
+const object1 = { ...array1, x }
+console.log("Spread with Object1", object1)
+
+const style = {
+    backgroundColor: "pink",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    ...x //spred 
+}
+console.log("style", style)
+
+const myObject = {
+    name: 'Devin',
+    age: 29,
+    location: {
+        city: 'San Francisco',
+    },
+    hairColor: 'brown',
+    eyeColor: 'blue',
+}
+const { age: ages, ...otherProperties } = myObject
+console.log("rest param", myObject)
+
+
+const ConstLet = () => {
+
+    let apples = 20
+    // let apple = 20
+    console.log("===let btwn fun & compo", apples) // throw:ERROR  ReferenceError: Can't find variable: apple while access not declare apple value in function
+
+    cars[0] = 'toyota';
+    // cars[1] = 'jeep';
+    applecolor[1] = "black";
+    console.log("--const applecolor--", applecolor);
+
+
+    if (true) {
+        console.log("~~~~~Inside Function~~~~~")
+        apples = '60'; //allow to re Assign
+        // let apples = "red";
+        const banana = 100; // re-assign constant
+        // banana = 100; //cant't re-assign constant
+
+        a = 1
+
+        console.log("*var re assign value *", a) //if it not assign return global value
+        console.log("let Apples", apples);//if it not assign return global value
+        console.log("--const re assign banana--", banana);//if it not assign return global value
+        console.log("--const car--", cars);
+
+    }
+    cars.push("Audi");
+    console.log("``````Outside Function but in component```````")
+    console.log("*var *", a) // return last RE assign value
+    console.log("let Apples", apples); // return Global value
+    console.log("--Const --", banana);
+    console.log("--const car--", cars);
+
+
+
+    function myFunction({ name, age }) {
+        return `${name}: ${age}`
+    }
+    console.log("Destructuring function arguments :", myFunction(myObject))
+
+    return (
+        <View>
+            <Text>Understand Let & Const</Text>
+            <Text>Destructuring ,Rest parameter ,Spread</Text>
+            <Text></Text>
+        </View>
+    )
+}
+
+
+console.log("^^^^Outside Component^^^^^")
+// console.log("var b ", b) // [throw: ReferenceError: Can't find variable: b when if var is not declare in globle
+//  & if it's declare global & assign value still take value of last declare var]
+
+console.log("*var *", a)//return last assign value
+console.log("let  Apple", apples);// return Global value
+console.log("--Const Banana--", banana);
+console.log("--const car--", cars);
+applecolor.push("yellow")
+console.log("applecolor", applecolor)
+export default ConstLet
